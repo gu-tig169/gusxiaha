@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: _buildRow(),
       floatingActionButton: FloatingActionButton(
           onPressed: () => print("FloatingActionButton"),
           child: IconButton(
@@ -63,5 +64,34 @@ class HomeScreen extends StatelessWidget {
         ],
       )),
     );
+  }
+
+  final List<String> task = [
+    'Read a book',
+    'Do some homework',
+    'Claer room',
+    'Watch movie',
+    'Shop groceries',
+    'Play tv game',
+    'Meet a friend',
+  ];
+  final bool _isChecked = false;
+
+  ListView _buildRow() {
+    return ListView.separated(
+        itemCount: task.length,
+        separatorBuilder: (BuildContext context, int index) => Divider(),
+        itemBuilder: (context, index) {
+          return CheckboxListTile(
+            value: _isChecked,
+            onChanged: (bool value) {},
+            title: Text(
+              '${task[index]}',
+              style: TextStyle(color: Colors.black),
+            ),
+            controlAffinity: ListTileControlAffinity.leading,
+            secondary: (Icon(Icons.clear)),
+          );
+        });
   }
 }
