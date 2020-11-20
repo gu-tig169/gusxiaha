@@ -13,7 +13,10 @@ class TodoInfoWidget extends StatelessWidget {
       //decoration: BoxDecoration(color: card.color),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Align(child: Text(stuff.stuff)),
+        child: Column(children: [
+          Text(stuff.stuff),
+          Text(stuff.isdone.toString()),
+        ]),
       ),
     );
   }

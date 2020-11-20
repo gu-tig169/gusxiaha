@@ -38,7 +38,7 @@ class TodoPageViewState extends State<TodoPageView> {
         FlatButton(
           child: Text('Save', style: TextStyle(color: Colors.white)),
           onPressed: () {
-            Navigator.pop(context, TodoInfo(stuff: stuff, isdone: isdone));
+            Navigator.pop(context, TodoInfo(stuff: stuff, isdone: false));
           },
         )
       ]),

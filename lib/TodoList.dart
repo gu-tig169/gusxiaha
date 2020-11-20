@@ -16,13 +16,16 @@ class TodoList extends StatelessWidget {
 
   Widget _todoItem(context, todo) {
     return ListTile(
-        leading: Container(
-          height: 30,
-          width: 30,
+        leading: Checkbox(
+          value: todo.isdone,
+          onChanged: (bool newvalue) {
+            var state = Provider.of<MyState>(context, listen: false);
+            state.setStuffDone(todo, newvalue);
+          },
         ),
         title: Text(todo.stuff),
         trailing: IconButton(
-          icon: Icon(Icons.delete),
+          icon: Icon(Icons.clear),
           onPressed: () {
             var state = Provider.of<MyState>(context, listen: false);
             state.removeStuff(todo);
