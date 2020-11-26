@@ -43,5 +43,11 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+            <!-- Don't delete the meta-data below.
+             This is use for Flutter about handle http -->
+        
+
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

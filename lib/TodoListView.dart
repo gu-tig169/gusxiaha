@@ -20,39 +20,15 @@ class TodoListView extends StatelessWidget {
               this.selectView('Undone', 'C'),
             ],
             onSelected: (String action) {
-              switch (action) {
-                case 'A':
-                  var state = Provider.of<MyState>(context, listen: false);
-                  state.setFilter('all');
-                  //print(state.filter);
-                  break;
-                case 'B':
-                  var state = Provider.of<MyState>(context, listen: false);
-                  state.setFilter('done');
-                  //print(state.filter);
-                  break;
-                case 'C':
-                  var state = Provider.of<MyState>(context, listen: false);
-                  state.setFilter('undone');
-                  //print(state.filter);
-                  break;
-              }
+              setFilterValue(action,
+                  context); //set the filter value to the filter variable in class MyState.
             },
           ),
         ],
       ),
       body: Consumer<MyState>(builder: (context, state, child) {
-        if (state.filter == '') {
-          return TodoList(state.list);
-        } else if (state.filter == 'all') {
-          return TodoList(state.list);
-        } else if (state.filter == 'done') {
-          return TodoList(
-              state.list.where((item) => item.isdone == true).toList());
-        } else {
-          return TodoList(
-              state.list.where((item) => item.isdone == false).toList());
-        }
+        return TodoList(state
+            .getListByFilter()); // return a list with filter depend on whcih filter you select on the PopupmentButton.
       }),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -63,14 +39,15 @@ class TodoListView extends StatelessWidget {
                   builder: (context) =>
                       TodoPageView(TodoInfo(stuff: 'what will you do'))));
           if (newStuff != null) {
-            //add new todo to the list
-            Provider.of<MyState>(context, listen: false).addStuff(newStuff);
+            Provider.of<MyState>(context, listen: false)
+                .addStuff(newStuff); //add new todo to the list
           }
         },
       ),
     );
   }
 
+  // write e general metod fot the PopupMenuButton to set item.
   selectView(String text, String id) {
     return new PopupMenuItem<String>(
       value: id,
@@ -82,5 +59,23 @@ class TodoListView extends StatelessWidget {
         ],
       )),
     );
+  }
+
+//set the filter value to the filter variabel in the class MyState in model.dart.
+// goal is to get different list with the filter value.
+  setFilterValue(String filter, BuildContext context) {
+    var state = Provider.of<MyState>(context, listen: false);
+    switch (filter) {
+      case 'A':
+        state.setFilter('all');
+        break;
+      case 'B':
+        state.setFilter('done');
+        break;
+      case 'C':
+        state.setFilter('undone');
+        //print(state.filter);
+        break;
+    }
   }
 }
