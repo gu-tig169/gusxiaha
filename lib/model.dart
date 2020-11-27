@@ -58,6 +58,7 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
+  //get the list from internet JSON file.
   Future getList() async {
     List<TodoInfo> list = await APITodo.fetchTodoList();
     _list = list;

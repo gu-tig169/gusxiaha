@@ -17,9 +17,7 @@ class APITodo {
       body: jsonbody,
       headers: {'Content-Type': 'application/json'},
     );
-    print('done');
-
-/*
+    /*
     if (response.statusCode == 201) {
       return TodoInfo.fromJSON(jsonDecode(response.body));
     } else {
@@ -30,10 +28,10 @@ class APITodo {
 
   static Future<List<TodoInfo>> fetchTodoList() async {
     var response = await http.get('$API_Url/todos?key=$API_KEY');
-    print(response.body);
+    //print(response.body);
 
     var json = jsonDecode(response.body);
-    print(json);
+    //print(json);
 
     return json.map<TodoInfo>((data) {
       return TodoInfo.fromJSON(data);
@@ -44,14 +42,13 @@ class APITodo {
     await http.delete('$API_Url/todos/$todoId?key=$API_KEY');
   }
 
-  // http.put()!
+  // http.put()!  to update a todo item
   static Future updateTodo(TodoInfo todo) async {
     Map<String, dynamic> json = TodoInfo.toJSON(todo);
     var jsonbody = jsonEncode(json);
 
     var id = todo.todoId;
 
-    // http.Response response = await http.post(
     await http.put(
       '$API_Url/todos/$id?key=$API_KEY',
       body: jsonbody,

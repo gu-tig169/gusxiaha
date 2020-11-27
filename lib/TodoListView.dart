@@ -36,8 +36,9 @@ class TodoListView extends StatelessWidget {
           var newStuff = await Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      TodoPageView(TodoInfo(stuff: 'what will you do'))));
+                  builder: (context) => TodoPageView(TodoInfo(stuff: null))));
+          //I changed this row and do not send some text to the Add page.
+          //TodoPageView(TodoInfo(stuff: 'what will you do'))));
           if (newStuff != null) {
             Provider.of<MyState>(context, listen: false)
                 .addStuff(newStuff); //add new todo to the list
