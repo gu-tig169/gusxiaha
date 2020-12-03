@@ -59,31 +59,38 @@ class TodoPageViewState extends State<TodoPageView> {
             ),
             //autofocus: true,
           ),
-
-          ButtonBar(
-            children: <Widget>[
-              FlatButton(
-                child: Text('Ok'),
-                color: Colors.blue,
-                onPressed: () {
-                  //print(stuff);
-                  if (stuff != null && stuff != '') {
-                    Navigator.pop(
-                        context, TodoInfo(stuff: stuff, isdone: false));
-                  }
-                },
-              ),
-              FlatButton(
-                child: Text('Cancel'),
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          )
+          _buttonbar(), //A buttonbar
         ]),
       ),
     );
+  }
+
+  Widget _buttonbar() {
+    return Container(
+        child: ButtonBar(
+      alignment: MainAxisAlignment.center,
+      children: <Widget>[
+        FlatButton(
+          child: Text('Ok'),
+          color: Colors.blue,
+          onPressed: () {
+            //print(stuff);
+            if (stuff != null && stuff != '') {
+              Navigator.pop(context, TodoInfo(stuff: stuff, isdone: false));
+            }
+          },
+        ),
+        Container(
+          width: 50,
+        ),
+        FlatButton(
+          child: Text('Cancel'),
+          color: Colors.blue,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    ));
   }
 }

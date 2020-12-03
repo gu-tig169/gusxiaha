@@ -13,9 +13,17 @@ class TodoInfoWidget extends StatelessWidget {
       child: Column(
         children: [
           Text('Title: ' + stuff.stuff),
-          Text('Is done: ' + stuff.isdone.toString()),
+          _setText(),
         ],
       ),
     );
+  }
+
+  Widget _setText() {
+    if (stuff.isdone == false) {
+      return Text('Status: You have not done this stuff.');
+    } else {
+      return Text('Status: The stuff is done!');
+    }
   }
 }

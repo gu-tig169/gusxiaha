@@ -30,7 +30,14 @@ class TodoListView extends StatelessWidget {
         return TodoList(state
             .getListByFilter()); // return a list with filter depend on whcih filter you select on the PopupmentButton.
       }),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: _floatbutton(context),
+    );
+  }
+
+  //This widget is for FloatingActionButton
+  Widget _floatbutton(BuildContext context) {
+    return Container(
+      child: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () async {
           var newStuff = await Navigator.push(
