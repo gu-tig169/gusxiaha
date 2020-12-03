@@ -21,9 +21,9 @@ class TodoInfoWidget extends StatelessWidget {
 
   Widget _setText() {
     if (stuff.isdone == false) {
-      return Text('Status: You have not done this stuff.');
+      return Text('Status: Not Done.');
     } else {
-      return Text('Status: The stuff is done!');
+      return Text('Status: Done.');
     }
   }
 }
