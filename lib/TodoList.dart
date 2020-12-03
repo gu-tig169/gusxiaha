@@ -23,7 +23,12 @@ class TodoList extends StatelessWidget {
             state.setStuffDone(todo, newvalue);
           },
         ),
-        title: Text(todo.stuff),
+        title: Text(todo.stuff,
+            style: TextStyle(
+                decoration: todo.isdone
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+                fontSize: 18)),
         trailing: IconButton(
           icon: Icon(Icons.clear),
           onPressed: () {

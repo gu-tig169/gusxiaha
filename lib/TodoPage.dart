@@ -46,21 +46,32 @@ class TodoPageViewState extends State<TodoPageView> {
       ]
       */
       ),
-      body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          //TodoInfoWidget(TodoInfo(stuff: this.stuff, isdone: this.isdone)),
-          //TextField(controller: textEditingController),
+      //body: SingleChildScrollView(
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //TodoInfoWidget(TodoInfo(stuff: this.stuff, isdone: this.isdone)),
+              //TextField(controller: textEditingController),
 
-          TextField(
-            controller: textEditingController,
-            decoration: InputDecoration(
-              icon: Icon(Icons.add_to_home_screen),
-              labelText: "add something",
-            ),
-            //autofocus: true,
-          ),
-          _buttonbar(), //A buttonbar
-        ]),
+              TextField(
+                maxLength: 60,
+                maxLengthEnforced: true,
+                controller: textEditingController,
+                decoration: InputDecoration(
+                  //12-03
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurpleAccent)),
+
+                  //icon: Icon(Icons.add_to_home_screen),
+                  labelText: "add something",
+                ),
+                //autofocus: true,
+              ),
+              _buttonbar(), //A buttonbar
+            ]),
       ),
     );
   }
